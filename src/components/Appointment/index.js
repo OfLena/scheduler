@@ -6,6 +6,8 @@ import Empty from "./Empty";
 import Form from "./Form";
 import useVisualMode from "hooks/useVisualMode";
 
+
+
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -22,7 +24,7 @@ export default function Appointment(props) {
         {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
         {mode === CREATE && (
            <Form onCancel={() => back()}
-            interviewers={[]}
+            interviewers={props.interviewers}
           /> )}
         {mode === SHOW && (
           <Show

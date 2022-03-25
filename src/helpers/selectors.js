@@ -26,3 +26,14 @@ export function getInterview(state, interview) {
 
   return null;
 };
+
+export function getInterviewersForDay (state, day) {
+  const findInterviews = state.days.find((days) => days.name === day);
+  if (state.days.length === 0 || findInterviews === undefined) {
+    return [];
+  }
+  
+  if (findInterviews.name === day) {
+    return findInterviews.interviewers.map((id) => state.interviewers[id])
+  };
+};
