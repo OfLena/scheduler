@@ -35,5 +35,6 @@ export function getInterviewersForDay (state, day) {
   
   if (findInterviews.name === day) {
     return findInterviews.interviewers.map((id) => state.interviewers[id])
+
   };
 };
