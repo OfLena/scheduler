@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
+
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  
+
 
   const reset = () => {
     setStudent("");
@@ -18,16 +21,27 @@ export default function Form(props) {
   // console.log("student-name", props.student);
   // console.log("props;--->interview", props.interviewer);
 
-  const save = (props) => {
-    if (student && interviewer) {
-      props.onSave(student, interviewer)
+  // const save = (props) => {
+  //   if (student && interviewer) {
+  //     props.onSave(student, interviewer)
+  //   }
+  // }
+
+  function validate() {
+    if (student === "") {
+      setError("Student name cannot be blank");
+      return;
     }
+    setError("");
+    props.onSave(student, interviewer);
   }
+  const [error, setError] = useState("");
+
 
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off">
+        <form autoComplete="off"  onSubmit={(event) => event.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
@@ -35,8 +49,10 @@ export default function Form(props) {
             value={student}
             onChange={(event) => setStudent(event.target.value)}
             placeholder="Enter Student Name"
-            onSubmit={(event) => event.preventDefault()}
+           
+            data-testid="student-name-input"
           />
+          <section className="appointment__validation">{error}</section>
         </form>
         <InterviewerList
           value={interviewer}
@@ -49,7 +65,7 @@ export default function Form(props) {
           <Button danger onClick={() => cancel(props)}>
             Cancel
           </Button>
-          <Button confirm onClick={() => save(props)}>
+          <Button confirm onClick={() => validate()}>
             Save
           </Button>
         </section>
