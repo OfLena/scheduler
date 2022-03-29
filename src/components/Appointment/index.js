@@ -7,6 +7,7 @@ import Form from "./Form";
 import useVisualMode from "hooks/useVisualMode";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 
 
 export default function Appointment(props) {
@@ -17,6 +18,8 @@ export default function Appointment(props) {
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM"
   const EDIT = "EDIT";
+  const ERROR_SAVING = "ERROR_SAVING";
+  const ERROR_DELETE = "ERROR_DELETE";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -27,14 +30,17 @@ export default function Appointment(props) {
       student: name,
       interviewer,
     };
-    transition(SAVING);
-    props.bookInterview(props.id, interview).then(() => transition(SHOW));
+    transition(SAVING, true);
+    props.bookInterview(props.id, interview)
+    .then(() => transition(SHOW))
+    .catch(error => transition(ERROR_SAVING, true));
   }
 
   function deleteApp () {
-    transition(DELETING)
+    transition(DELETING, true)
     props.deleteInterview(props.id)
     .then(() => transition(EMPTY))
+    .catch(error => transition(ERROR_DELETE, true))
   };
 
   function cancelConfirm () {
@@ -77,6 +83,16 @@ export default function Appointment(props) {
           student={props.interview.student}
           interviewer={props.interview.interviewer.id}
         />)}
+        {mode === ERROR_DELETE && (
+          <Error 
+          onClose={() => back()}
+          />
+        )}
+        {mode === ERROR_SAVING && (
+          <Error 
+          onClose={() => back()}
+          />
+        )}
       </Fragment>
     </article>
   );
