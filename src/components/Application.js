@@ -12,10 +12,14 @@ import {
 import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
+
+  //Custom Hook destructuring
   const { state, setDay, bookInterview, deleteInterview } =
     useApplicationData();
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+
+  //Map through the appointments to pass to Appointment as props
   const appointment = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 

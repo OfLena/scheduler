@@ -9,14 +9,13 @@ import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
 
-
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const SAVING = "SAVING";
   const DELETING = "DELETING";
-  const CONFIRM = "CONFIRM"
+  const CONFIRM = "CONFIRM";
   const EDIT = "EDIT";
   const ERROR_SAVING = "ERROR_SAVING";
   const ERROR_DELETE = "ERROR_DELETE";
@@ -30,22 +29,27 @@ export default function Appointment(props) {
       student: name,
       interviewer,
     };
+
+    //Book an Interview see useApplicationData
     transition(SAVING, true);
-    props.bookInterview(props.id, interview)
-    .then(() => transition(SHOW))
-    .catch(error => transition(ERROR_SAVING, true));
+    props
+      .bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch((error) => transition(ERROR_SAVING, true));
   }
 
-  function deleteApp () {
-    transition(DELETING, true)
-    props.deleteInterview(props.id)
-    .then(() => transition(EMPTY))
-    .catch(error => transition(ERROR_DELETE, true))
-  };
-
-  function cancelConfirm () {
-    transition(CONFIRM)
-  };
+  //Delete an Interview see useApplicationData
+  function deleteApp() {
+    transition(DELETING, true);
+    props
+      .deleteInterview(props.id)
+      .then(() => transition(EMPTY))
+      .catch((error) => transition(ERROR_DELETE, true));
+  }
+  //Transitions from Show to "Are you sure?" on Delete
+  function cancelConfirm() {
+    transition(CONFIRM);
+  }
 
   return (
     <article className="appointment">
@@ -71,28 +75,22 @@ export default function Appointment(props) {
         )}
         {mode === CONFIRM && (
           <Confirm
-          message={"Are you sure?"}
-          onConfirm={deleteApp}
-          onCancel={back}
+            message={"Are you sure?"}
+            onConfirm={deleteApp}
+            onCancel={back}
           />
         )}
-        {mode === EDIT && (<Form 
-          onCancel={() => back()}
-          onSave={save}
-          interviewers={props.interviewers}
-          student={props.interview.student}
-          interviewer={props.interview.interviewer.id}
-        />)}
-        {mode === ERROR_DELETE && (
-          <Error 
-          onClose={() => back()}
+        {mode === EDIT && (
+          <Form
+            onCancel={() => back()}
+            onSave={save}
+            interviewers={props.interviewers}
+            student={props.interview.student}
+            interviewer={props.interview.interviewer.id}
           />
         )}
-        {mode === ERROR_SAVING && (
-          <Error 
-          onClose={() => back()}
-          />
-        )}
+        {mode === ERROR_DELETE && <Error onClose={() => back()} />}
+        {mode === ERROR_SAVING && <Error onClose={() => back()} />}
       </Fragment>
     </article>
   );

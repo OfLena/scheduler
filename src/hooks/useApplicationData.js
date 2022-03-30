@@ -9,6 +9,7 @@ export default function useApplicationData() {
     interviewers: {},
   });
 
+  //Booking an Interview see Appointment component
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
@@ -34,6 +35,7 @@ export default function useApplicationData() {
       });
   };
 
+  //Deleting an Interview see Appointment component
   const deleteInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
@@ -75,19 +77,16 @@ export default function useApplicationData() {
       let countNulls = 0;
       //Loop over the state.days[at the index being processed].appointments array
       // Monday = 0, Tuesday = 1 etc.
-      //every day has 5 appointments. For each element in that day
       // check if appointments.interview = null
       state.days[index].appointments.forEach((element) => {
         if (appointments[element].interview === null) {
           countNulls++;
         }
       });
-
       const newSpots = {
         ...day,
         spots: countNulls,
       };
-
       return newSpots;
     });
   };
