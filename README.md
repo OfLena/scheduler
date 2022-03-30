@@ -2,7 +2,8 @@
 
 Interview Scheduler is a single page scheduling app.
 
-This app allows you to create, edit, and delete interviews.
+This app allows you to create, edit, and delete interviews.\
+Built with React / JSX and tested through Jest/StoryBook/Cypress.
 
 ## Setup
 
@@ -33,6 +34,14 @@ npm run storybook
 - React-dom
 - React-scripts
 
+## App Demo
+
+Watch a video of the [Interview Scheduler App](https://youtu.be/dOrcOG6R4ck) in Action!
 
 ## ScreenShots
-!["Screenshot of "](url)
+
+!["Screenshot of Saving Appointment Booking "](https://github.com/OfLena/scheduler/blob/master/docs/Scheduler_Saving.png?raw=true)
+
+!["Screenshot of Open Spot "](https://github.com/OfLena/scheduler/blob/master/docs/Scheduler_Open_Spot.png?raw=true)
+
+!["Screenshot of Canceling Appointment "](https://github.com/OfLena/scheduler/blob/master/docs/Scheduler_Delete.png?raw=true)
