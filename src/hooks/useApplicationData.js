@@ -20,11 +20,6 @@ export default function useApplicationData() {
     };
     setState({ ...state, appointments });
 
-    // console.log("interview--->", interview);
-    // console.log('state --->', state)
-    // console.log('appointments---->', appointments)
-    // console.log("appointment--->", appointment);
-
     return axios
       .put(`/api/appointments/${id}`, {
         interview,
@@ -59,7 +54,6 @@ export default function useApplicationData() {
   };
 
   const setDay = (day) => setState({ ...state, day });
-  // const setDays = days => setState(prev => ({ ...prev, days }));
 
   useEffect(() => {
     Promise.all([
@@ -77,27 +71,13 @@ export default function useApplicationData() {
   }, []);
 
   const updateSpots = (state, appointments) => {
-    // console.log('inside map state.days -->', state.days)
-
     return state.days.map((day, index) => {
-      console.log("index", index);
-      // console.log('day', day)
-
-      //set counter to zero
       let countNulls = 0;
-
-      console.log("state.days[index]", state.days[index]);
-
-      console.log("before", state.days[index].appointments);
-
       //Loop over the state.days[at the index being processed].appointments array
       // Monday = 0, Tuesday = 1 etc.
       //every day has 5 appointments. For each element in that day
       // check if appointments.interview = null
       state.days[index].appointments.forEach((element) => {
-        console.log("after", appointments[element]);
-        console.log("interview", appointments[element].interview);
-
         if (appointments[element].interview === null) {
           countNulls++;
         }
@@ -107,7 +87,7 @@ export default function useApplicationData() {
         ...day,
         spots: countNulls,
       };
-      // console.log(newSpots)
+
       return newSpots;
     });
   };
