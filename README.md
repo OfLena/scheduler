@@ -40,8 +40,11 @@ Watch a video of the [Interview Scheduler App](https://youtu.be/dOrcOG6R4ck) in 
 
 ## ScreenShots
 
+#### Saving Appointment
 !["Screenshot of Saving Appointment Booking "](https://github.com/OfLena/scheduler/blob/master/docs/Scheduler_Saving.png?raw=true)
 
+#### Open Appointment Spot
 !["Screenshot of Open Spot "](https://github.com/OfLena/scheduler/blob/master/docs/Scheduler_Open_Spot.png?raw=true)
 
-!["Screenshot of Canceling Appointment "](https://github.com/OfLena/scheduler/blob/master/docs/Scheduler_Delete.png?raw=true)
+#### Cancelling Confirmation
+!["Screenshot of Cancelling Appointment "](https://github.com/OfLena/scheduler/blob/master/docs/Scheduler_Delete.png?raw=true)
