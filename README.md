@@ -1,5 +1,9 @@
 # Interview Scheduler
 
+Interview Scheduler is a single page scheduling app.
+
+This app allows you to create, edit, and delete interviews.
+
 ## Setup
 
 Install dependencies with `npm install`.
@@ -21,3 +25,14 @@ npm test
 ```sh
 npm run storybook
 ```
+## Dependencies
+- Axios
+- Classnames
+- Normalize
+- React
+- React-dom
+- React-scripts
+
+
+## ScreenShots
+!["Screenshot of "](url)
