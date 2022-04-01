@@ -70,7 +70,7 @@ export default function Appointment(props) {
             student={props.interview.student}
             interviewer={props.interview.interviewer}
             onDelete={cancelConfirm}
-            onEdit={() => transition("EDIT")}
+            onEdit={() => transition(EDIT)}
           />
         )}
         {mode === CONFIRM && (
@@ -89,8 +89,8 @@ export default function Appointment(props) {
             interviewer={props.interview.interviewer.id}
           />
         )}
-        {mode === ERROR_DELETE && (<Error onClose={() => back()} />)}
-        {mode === ERROR_SAVING && (<Error onClose={() => back()} />)}
+        {mode === ERROR_DELETE && <Error onClose={() => back()} />}
+        {mode === ERROR_SAVING && <Error onClose={() => back()} />}
       </Fragment>
     </article>
   );

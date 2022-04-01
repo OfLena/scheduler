@@ -8,27 +8,28 @@ export default function Form(props) {
   const [error, setError] = useState("");
 
   const reset = function () {
-    console.log('reset here')
     setStudent("");
     setInterviewer(null);
   };
 
-  const cancel = function ()  {
-    console.log('cancel here')
+  const cancel = function () {
     reset();
-    setError('');
+    setError("");
     props.onCancel();
   };
 
   function validate() {
-    if (student === "" || !interviewer) {
-      setError("Student name and/or Interviewer cannot be blank");
+    if (student === "") {
+      setError("Student name cannot be blank");
       return;
     }
-    setError("");
+    if (!interviewer) {
+      setError("Please select an interviewer");
+      return;
+    }
+    setError('')
     props.onSave(student, interviewer);
   }
-
 
   return (
     <main className="appointment__card appointment__card--create">
