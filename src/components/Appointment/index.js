@@ -31,7 +31,7 @@ export default function Appointment(props) {
     };
 
     //Book an Interview see useApplicationData
-    transition(SAVING, true);
+    transition(SAVING);
     props
       .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
@@ -89,8 +89,8 @@ export default function Appointment(props) {
             interviewer={props.interview.interviewer.id}
           />
         )}
-        {mode === ERROR_DELETE && <Error onClose={() => back()} />}
-        {mode === ERROR_SAVING && <Error onClose={() => back()} />}
+        {mode === ERROR_DELETE && (<Error onClose={() => back()} />)}
+        {mode === ERROR_SAVING && (<Error onClose={() => back()} />)}
       </Fragment>
     </article>
   );
